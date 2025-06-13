@@ -1,43 +1,19 @@
 import React, { useState } from 'react'
 import './App.css'
 import axios from 'axios'
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import Secret from './Secret'
+import Success from './Success'
 
 function App() {
-
-  const[msg,setMsg] = useState('');
-  const[password, setPassword] = useState('')
-
-
-  const encryptMessage = ()=>{
-      axios.post(`http://localhost:8080/encryptMsg?msg=${msg}&password=${password}`)
-  }
-
-  return (
+  return(
     <>
-      <div className='container'>
-            <h1>Lock - Talk</h1>
-            <div id="form">
-              <label>Message:</label>
-
-              <textarea
-              id="msg-box"
-              type="text"
-              value={msg}
-              onChange={(event)=>{setMsg(event.target.value)}}
-              placeholder='Enter your message'
-              />
-
-              <label>Password:</label>
-              <input
-              type='password'
-              value={password}
-              onChange={(event)=>{setPassword(event.target.value)}}
-              placeholder='enter your password'
-              />
-
-              <button onClick={encryptMessage}>Encrypt Message</button>
-            </div>
-      </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Secret/>}></Route>
+                <Route path="/success" element={<Success/>}> </Route>
+            </Routes>
+        </BrowserRouter>
     </>
   )
 }
