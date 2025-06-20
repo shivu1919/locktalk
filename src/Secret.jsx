@@ -19,7 +19,7 @@ function Secret() {
 
 
   const encryptMessage = ()=>{
-      axios.post(`http://localhost:8080/encryptMsg?msg=${msg}&password=${password}`)
+      axios.post(`https://locktalk-sb-production.up.railway.app/encryptMsg?msg=${msg}&password=${password}`)
       .then((response) => {
         const secretmsg = response.data;
         setSecret(secretmsg);
@@ -32,7 +32,7 @@ function Secret() {
   }
 
     const decryptMessage = ()=>{
-      axios.post(`http://localhost:8080/decryptMsg?secret=${encodeURIComponent(copiedSecretMsg)}&password=${encodeURIComponent(passwordForDecryption)}`)
+      axios.post(`https://locktalk-sb-production.up.railway.app/decryptMsg?secret=${encodeURIComponent(copiedSecretMsg)}&password=${encodeURIComponent(passwordForDecryption)}`)
       .then((response) => {
         const secretmsg = response.data;
         setDecryptedMsg(secretmsg);
